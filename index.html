@@ -2,35 +2,39 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Prueba</title>
+        <meta author="Kimberly Muñoz">
+        <title>TALLER JSON</title>
         
         <link href="css/estilo.css" rel="stylesheet">
        
     </head>
     <body>
-        <div id="d">
-            <br><p id="tema">GATITOS Y MIAU</p>
-            <br><p id='A'>Los gatitos son muy bonitos, adorables y a la vez no molestan mucho. Me gusta su independiencia y a la vez pueden dar amor cuando mas lo necesitas. MIAU!</p>
-            <br><p>MIAU</p>
-            <br><p>Guau</p><br>
-        </div>
-        <div>
-            <a id="mienlace" href="#" onclick="cambiar()">OCULTAR</a>
-            <a class="boton" href="#" onclick="resaltar()">RESALTAR TODO</a><br><br><br>
-            <input type="text" name="textfield" id="buscar" >
-            <a class="boton" id="RxP" href="#" onclick="resaltarPorPalabra()">RESALTAR PALABRA</a>
-            <br><br><br>
-            <a href="index.html" onMouseOver="pintar('#ff0000')" onMouseOut="pintar('#ffffff')">Rojo</a>
+        <div id="container">
+            <div id="datos">
+                <h1>DATOS</h1>
+               
+            </div>
+            <br><br>
+            <div>
+                <table id="T1">
+                  
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Ciudad</th>
+                        <th>Pais</th>
+                       
+                    </tr>
+                   
+                </table>
+               
+            </div>
 
-            <a href="index.html" onMouseOver="pintar('#00ff00')" onMouseOut="pintar('#ffffff')">Verde</a>
-
-            <a href="index.html" onMouseOver="pintar('#0000ff')" onMouseOut="pintar('#ffffff')">Azul</a>
-            
         </div>
+       
         <footer>
         
         </footer>  
-         <script type="text/javascript" src="js/main.js"></script>  
+         <script type="text/javascript" src="js/datos.js"></script>  
     </body>
     
     

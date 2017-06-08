@@ -1,7 +1,39 @@
 *{margin:0}
-#tema{color:aqua}
-#A{color:brown}
+
 .resaltar{background-color: blue;color: white}
+h1, input{text-align: center}
+h1{color: blueviolet; font-family: fantasy}
+p{font-family: cursive}
+table {
+    background: #f1f1f1;
+    margin: 50px auto;
+    padding: 5px 10px;
+    border: 1px solid #333333;
+    border-spacing: 8px;
+    text-align: center;
+}
+table td {
+    background: #f5f5f5;
+    width: 100px;
+    border: 1px solid #999999;
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+}
+
+table th {
+    background: #D65600;
+    padding: 10px 50px 10px 50px;
+    color: #ffffff;
+    box-shadow: 1px 1px 2px #555555;
+}
+table caption {
+    font: 1.2em/2 Verdana, sans-serif;
+    color: #D65600;
+}
+
+
+
+table tr:nth-child(2n+1) {background: #e1e1e1;} /* marca cebra filas impares */
 
 a {
     border: none;

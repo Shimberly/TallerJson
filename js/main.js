@@ -1,151 +1,127 @@
-var variable = 'A';
-alert(variable);
-    function color(color){
-       var nodos=document.getElementsByTagName('p');
-            for(let i=0;i<nodos.length-1;i++){
-                 nodos[i].style.backgroundColor=color;
-
-            }
-        nodos[1].style.color='black';
-        nodos[nodos.length-1].className='resaltar';
-        
-    }
-
-    function resaltar(){
-        var nodoLink=document.getElementsByTagName('a')[1];
-        if(nodoLink.innerHTML==='RESALTAR TODO'){
-            color('yellow');
-            
-            nodoLink.innerHTML='LIMPIAR';
-        }else{
-            color('white');
-             nodoLink.innerHTML='RESALTAR TODO';
-        }
-    }
-
-
-    function resaltarPorPalabra(){
-        var nodoLink=document.getElementById('RxP');
-        
-        var valor=document.getElementById('buscar').value;
-
-        var texto=document.getElementsByTagName('p');
-        if(nodoLink.innerHTML==='RESALTAR PALABRA'){
-            for(let i=0;i<texto.length;i++){
-                texto[i].innerHTML=resaltarPalabra(texto[i].innerHTML,'yellow');
-            }
-            nodoLink.innerHTML='LIMPIAR PALABRA';
-        }else{
-            for(let i=0;i<texto.length;i++){
-                texto[i].innerHTML=resaltarPalabra(texto[i].innerHTML,'white');
-            }  
-            nodoLink.innerHTML='RESALTAR PALABRA';
-        }
-        function resaltarPalabra(texto,color){
-       
-            var nuevoValor = "<span style=\u0022background-Color:"+color+";\u0022>"+valor+"</span>";
-            return texto.replace(valor, nuevoValor);
-
-        } 
-    }
-     
-function pintar(col)
-  {
-    document.bgColor=col;
-  }
-
-function cambiar(){
-    var img = document.images[0];
-    if(document.getElementById("mienlace").innerHTML==='OCULTAR'){
-        document.getElementById('A').style.display = 'none';
-        modificar('MOSTRAR');
-        if(img!==undefined){
-            img.style.display = 'none';
-        }
-        
-    }else{
-        document.getElementById('A').style.display = 'block';
-        modificar('OCULTAR');
-       
-        
-        if(img===undefined){
-            var elem = document.createElement("img");
-            elem.setAttribute("src", "img/EDCOM.jpg");
-            var nuevo_parrafo = document.createElement('p').appendChild(elem);
-
-            var segundo_p = document.getElementById('d').getElementsByTagName('p')[1];
-
-            document.getElementById('d').insertBefore(nuevo_parrafo,segundo_p);
-            
-        }else{
-             img.style.display = 'block';
-        }
-       
-    }
-
+function Estudiante(nombre,parcial,final,mejoramiento) {
+    this.nombre = nombre;
+    this.parcial = parcial;
+    this.final = final;
+    this.mejoramiento = mejoramiento;
+    
 }
+var estudiantes=[];
 
-function modificar(texto){
-  document.getElementById("mienlace").innerHTML = texto;
-  
-}  
-function printDOM(node,prefix){
-    console.log(prefix + node.nodeName);
-    for(let i=0;i<node.childNodes.length;i++){
-        printDOM(node.childNodes[i],prefix + '');
+
+function ingresar(){
+    var table = document.getElementById("T1");
+    var hilera = document.createElement("tr");
+    var datos = document.getElementsByTagName("input");
+    
+    for(let i=0;i<datos.length-3;i++){
+        var celda = document.createElement("td");
+        var textoCelda = document.createTextNode(datos[i].value);
+        celda.appendChild(textoCelda);
+        hilera.appendChild(celda);
     }
+    var persona = new Estudiante(datos[0].value,datos[1].value,datos[2].value,datos[3].value);
+    estudiantes.push(persona);
+    /*
+    
+    var TRs = document.getElementsByTagName("tr");
+    var pos=2;
+   
+    if( TRs[pos] ) {
+        table.insertBefore(hilera, TRs[pos]);
+    }
+    else {
+        table.appendChild(hilera);
+    } */
+    //table.insertBefore(hilera, TRs[pos]); 
+    table.appendChild(hilera);
     
 }
 
-printDOM(document,'');
-
-  /*var i1= document.getElementsByTagName('p');
-    console.log(i1);
-    for(let p of i1){
-        p.classList.add('highlight');
-    }*/
-   /* var texto=document.getElementsByTagName('p');
-    for(let i=0;i<texto.length;i++){
-          resaltarPalabra('gatitos',texto[i].innerHTML);
-
+function promedioParcial(){
+    var table = document.getElementById("T1");
+    var total=0;
+    var cont=0;
+    var miCelda = table.getElementsByTagName("td");
+    for(let i=1;i<miCelda.length;i=i+4){
+       total+=parseFloat(miCelda[i].innerHTML);
+        cont++;
     }
-    //resaltarPalabra('miau');
-    function resaltarPalabra(palabra,texto){
-       
-        //var texto = "lenguaje sql";
-        var intIndex = texto.indexOf(palabra);
-        console.log(intIndex);
-        alert(intIndex);
-    }
-*/
-/*var cadena = document.getElementsByTagName('p')[1];
-var patron = "gatito";
-    var nuevoValor    = "miau";
-   cadena= cadena.replace(patron, nuevoValor);*/
-
-/*var cadena = document.getElementsByTagName('p')[1].innerHTML,
-    patron = "gatito",
-    nuevoValor = "<span style=\u0022background-Color:yellow;\u0022>"+patron+"</span>";
-    document.getElementsByTagName('p')[1].innerHTML = cadena.replace(patron, nuevoValor);*/
- 
-/*var cadena = document.getElementsByTagName('p')[1].innerHTML,
-    patron = "gatito",
-    nuevoValor = "<span style=\u0022background-Color:yellow;\u0022>"+patron+"</span>",
-    nuevaCadena = cadena.replace(patron, nuevoValor);
-    console.log(nuevaCadena);
-    cadena=nuevaCadena;*/
+    document.getElementById("valorParcial").value=total/cont;
    
+}
 
-   /* 
-        var texto=document.getElementsByTagName('p');
-        for(let i=0;i<texto.length;i++){
-          texto[i].innerHTML=resaltarPalabra(texto[i].innerHTML);
+function promedioFinal(){
+    var table = document.getElementById("T1");
+    var total=0;
+    var cont=0;
+    var miCelda = table.getElementsByTagName("td");
+    for(let i=2;i<miCelda.length;i=i+4){
+       total+=parseFloat(miCelda[i].innerHTML);
+        cont++;
+    }
+    document.getElementById("valorFinal").value=total/cont;
+}
+function promedioMejoramiento(){
+    var table = document.getElementById("T1");
+    var total=0;
+    var cont=0;
+    var miCelda = table.getElementsByTagName("td");
+    for(let i=3;i<miCelda.length;i=i+4){
+      total+=parseFloat(miCelda[i].innerHTML);
+         cont++;
+    }
+    document.getElementById("valorMejoramiento").value=total/cont;
+   
+}
+function reporte(){
+    var table = document.getElementById("T2");
+    var filas = table.getElementsByTagName("tr");
+    //alert(filas.length);
+    if(filas.length>1){
+        for(let i=1;i<filas.length;i++){
+            table.deleteRow(i);
+        }   
+    }
+    
+    
+    //alert(estudiantes[0].nombre);
+    var promedio=0,total=0;
+    for(let i=0;i<estudiantes.length;i++){
+        var hilera = document.createElement("tr");
+        var celda = document.createElement("td");
+        var celda2 = document.createElement("td");
+        var textoCelda = document.createTextNode(estudiantes[i].nombre);
+        total=(parseFloat(estudiantes[i].parcial)+parseFloat(estudiantes[i].final));
+        //alert(total);
+        if((total/2)>=60){
+             var textoCelda2 = document.createTextNode("APROBADO");
+            
+        }else{
+            if(parseFloat(estudiantes[i].parcial)<=parseFloat(estudiantes[i].final)){
+                total=(parseFloat(estudiantes[i].mejoramiento)+parseFloat(estudiantes[i].final));
+                    
+            }else{
+                total=(parseFloat(estudiantes[i].parcial)+parseFloat(estudiantes[i].mejoramiento));
+                
+            }
+            if((total/2)>=60){
+                     var textoCelda2 = document.createTextNode("APROBADO");
+            }else{
+                var textoCelda2 = document.createTextNode("REPROBADO");
+            } 
             
         }
-   
-        function resaltarPalabra(texto){
        
-            var patron = "MIAU",nuevoValor = "<span style=\u0022background-Color:yellow;\u0022>"+patron+"</span>";
-            return texto.replace(patron, nuevoValor);
+        celda.appendChild(textoCelda);
+        celda2.appendChild(textoCelda2);
+        hilera.appendChild(celda);
+        hilera.appendChild(celda2);
+        table.appendChild(hilera);
+    }
+   
+    
+    
+}
 
-        } */
+
+
